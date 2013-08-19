@@ -77,6 +77,7 @@ private:
     void createGridGroupBox5();
     void createGridGroupBox6();
     void createGridGroupBox7();
+    void createButtonBox();
 
     enum { InputBoxMaxLength = 100, NumButtons = 4 };
 
@@ -182,10 +183,23 @@ private:
     QCheckBox *checkBox52;
     QCheckBox *checkBox53;
 
-    //目标天体分布模型
+    //目标天体参数
     QGroupBox *gridGroupBox6;
-    QRadioButton *radioButton61;
-    QRadioButton *radioButton62;
+    QLabel *label61;
+    QComboBox *comboBox61;
+    QLabel *label62;
+    QLineEdit *lineEdit62;
+    QLabel *unit62;
+    QLabel *label63;
+    QComboBox *comboBox63;
+    QLabel *label64;
+    QCheckBox *checkBox64;
+    QLabel *label65;
+    QComboBox *comboBox65;
+    QLabel *label66;
+    QComboBox *comboBox66;
+    QLabel *label67;
+    QComboBox *comboBox67;
 
     //输出类型选择
     QGroupBox *gridGroupBox7;
@@ -211,6 +225,8 @@ private slots:
     void slotOpenFile312();
     void slotOpenFile313();
     void slotOpenFile314();
+
+    void slotCheckBox64();
 };
 //! [0]
 

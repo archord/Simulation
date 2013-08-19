@@ -5,6 +5,7 @@
 #include "dialog.h"
 #include "ui_dialog.h"
 
+
 //! [0]
 Dialog::Dialog()
 {
@@ -18,13 +19,7 @@ Dialog::Dialog()
     createGridGroupBox5();
     createGridGroupBox6();
     createGridGroupBox7();
-
-
-    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
-                                     | QDialogButtonBox::Cancel);
-
-    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
-    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
+    createButtonBox();
 
     QVBoxLayout *mainLayout = new QVBoxLayout;
     mainLayout->setMenuBar(menuBar);
@@ -40,6 +35,29 @@ Dialog::Dialog()
 
     tmpString = codec->toUnicode("空间红外天文观测仿真软件");
     setWindowTitle(tmpString);
+    setWindowFlags(Qt::WindowMinMaxButtonsHint | Qt::WindowCloseButtonHint);
+    //this->setWindowState(Qt::WindowMinimized);
+}
+
+
+void Dialog::createMenu()
+{
+    menuBar = new QMenuBar;
+
+    tmpString = codec->toUnicode("文件");
+    fileMenu = new QMenu(tmpString, this);
+    tmpString = codec->toUnicode("打开");
+    openAction = fileMenu->addAction(tmpString);
+    tmpString = codec->toUnicode("保存");
+    saveAction = fileMenu->addAction(tmpString);
+    tmpString = codec->toUnicode("另存为");
+    saveAsAction = fileMenu->addAction(tmpString);
+    tmpString = codec->toUnicode("退出");
+    exitAction = fileMenu->addAction(tmpString);
+    menuBar->addMenu(fileMenu);
+
+    connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
+    //connect
 }
 
 //Observation strategy
@@ -357,6 +375,12 @@ void Dialog::createGridGroupBox5()
     checkBox52 = new QCheckBox(tmpString);
     tmpString = codec->toUnicode("宇宙射线");
     checkBox53 = new QCheckBox(tmpString);
+    /*
+    tmpString = codec->toUnicode("理论模型");
+    radioButton61 = new QRadioButton(tmpString);
+    tmpString = codec->toUnicode("实测模型");
+    radioButton62 = new QRadioButton(tmpString);
+    */
     layout->addWidget(checkBox51, 0, 0);
     layout->addWidget(checkBox52, 0, 1);
     layout->addWidget(checkBox53, 0, 2);
@@ -369,18 +393,157 @@ void Dialog::createGridGroupBox5()
 //Object distribute module
 void Dialog::createGridGroupBox6()
 {
-    tmpString = codec->toUnicode("目标天体分布模型");
+    tmpString = codec->toUnicode("目标天体参数");
     gridGroupBox6 = new QGroupBox(tmpString);
     QGridLayout *layout = new QGridLayout;
 
-    tmpString = codec->toUnicode("理论模型");
-    radioButton61 = new QRadioButton(tmpString);
-    tmpString = codec->toUnicode("实测模型");
-    radioButton62 = new QRadioButton(tmpString);
-    layout->addWidget(radioButton61, 0, 0);
-    layout->addWidget(radioButton62, 0, 1);
 
-    layout->setColumnStretch(1, 20);
+    tmpString = codec->toUnicode("展源目标类型：");
+    label61 = new QLabel(tmpString);
+    comboBox61 = new QComboBox;
+    comboBox61->setMaximumWidth(InputBoxMaxLength);
+    tmpString = codec->toUnicode("星系");
+    comboBox61->addItem(tmpString);
+    tmpString = codec->toUnicode("行星状星云");
+    comboBox61->addItem(tmpString);
+    tmpString = codec->toUnicode("反射星云");
+    comboBox61->addItem(tmpString);
+    tmpString = codec->toUnicode("轻II区");
+    comboBox61->addItem(tmpString);
+    tmpString = codec->toUnicode("PDR区");
+    comboBox61->addItem(tmpString);
+
+    tmpString = codec->toUnicode("目标亮度（wise-w1）：");
+    label62 = new QLabel(tmpString);
+    lineEdit62 = new QLineEdit;
+    lineEdit62->setMaximumWidth(InputBoxMaxLength);
+    tmpString = codec->toUnicode("mag/arcsec2");
+    unit62 = new QLabel(tmpString);
+
+    tmpString = codec->toUnicode("ExtModel+qPAH：");
+    label63 = new QLabel(tmpString);
+    comboBox63 = new QComboBox;
+    tmpString = codec->toUnicode("MW3.1_00 0.47%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("MW3.1_10 1.12%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("MW3.1_20 1.77%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("MW3.1_30 2.50%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("MW3.1_40 3.19%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("MW3.1_50 3.90%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("MW3.1_60 4.58%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("LMC2_00  0.75%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("LMC2_05  1.49%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("LMC2_10  2.37%");
+    comboBox63->addItem(tmpString);
+    tmpString = codec->toUnicode("smc      0.10%");
+    comboBox63->addItem(tmpString);
+
+    tmpString = codec->toUnicode("");
+    label64 = new QLabel(tmpString);
+    tmpString = codec->toUnicode("u_single");
+    checkBox64 = new QCheckBox(tmpString);
+    checkBox64->setLayoutDirection(Qt::RightToLeft);
+
+    tmpString = codec->toUnicode("umin：");
+    label65 = new QLabel(tmpString);
+    comboBox65 = new QComboBox;
+    tmpString = codec->toUnicode("0.10");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("0.15");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("0.20");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("0.30");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("0.40");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("0.50");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("0.70");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("0.80");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("1.00");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("1.20");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("1.50");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("2.00");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("2.50");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("3.00");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("4.00");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("5.00");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("7.00");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("8.00");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("10.0");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("12.0");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("15.0");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("20.0");
+    comboBox65->addItem(tmpString);
+    tmpString = codec->toUnicode("25.0");
+    comboBox65->addItem(tmpString);
+
+    tmpString = codec->toUnicode("umax：");
+    label66 = new QLabel(tmpString);
+    comboBox66 = new QComboBox;
+    tmpString = codec->toUnicode("1e3");
+    comboBox66->addItem(tmpString);
+    tmpString = codec->toUnicode("1e4");
+    comboBox66->addItem(tmpString);
+    tmpString = codec->toUnicode("1e5");
+    comboBox66->addItem(tmpString);
+    tmpString = codec->toUnicode("1e6");
+    comboBox66->addItem(tmpString);
+    tmpString = codec->toUnicode("1e7");
+    comboBox66->addItem(tmpString);
+
+    tmpString = codec->toUnicode("PAHTempFile：");
+    label67 = new QLabel(tmpString);
+    comboBox67 = new QComboBox;
+    tmpString = codec->toUnicode("1e3");
+    comboBox67->addItem(tmpString);
+
+    layout->addWidget(label61,    0, 0);
+    layout->addWidget(comboBox61, 0, 1);
+    layout->addWidget(label62,    0, 2);
+    layout->addWidget(lineEdit62, 0, 3);
+    layout->addWidget(unit62,     0, 4);
+    layout->addWidget(label63,    0, 5);
+    layout->addWidget(comboBox63, 0, 6);
+
+    //layout->addWidget(label64,    1, 0);
+    layout->addWidget(checkBox64, 1, 1);
+
+    connect(checkBox64, SIGNAL(clicked()), this, SLOT(slotCheckBox64()));
+
+    layout->addWidget(label65,    1, 2);
+    layout->addWidget(comboBox65, 1, 3);
+    layout->addWidget(label66,    1, 5);
+    layout->addWidget(comboBox66, 1, 6);
+
+    layout->addWidget(label66,    1, 5);
+    layout->addWidget(comboBox66, 1, 6);
+
+    //layout->setColumnStretch(1, 20);
 
     gridGroupBox6->setLayout(layout);
 }
@@ -514,24 +677,21 @@ void Dialog::slotOpenFile314()
     lineEdit314->setText(fileName);
 }
 
-void Dialog::createMenu()
+void Dialog::createButtonBox()
 {
-    menuBar = new QMenuBar;
 
-    tmpString = codec->toUnicode("文件");
-    fileMenu = new QMenu(tmpString, this);
-    tmpString = codec->toUnicode("打开");
-    openAction = fileMenu->addAction(tmpString);
-    tmpString = codec->toUnicode("保存");
-    saveAction = fileMenu->addAction(tmpString);
-    tmpString = codec->toUnicode("另存为");
-    saveAsAction = fileMenu->addAction(tmpString);
-    tmpString = codec->toUnicode("退出");
-    exitAction = fileMenu->addAction(tmpString);
-    menuBar->addMenu(fileMenu);
-
-    connect(exitAction, SIGNAL(triggered()), this, SLOT(accept()));
-    //connect
+    buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok
+                                     | QDialogButtonBox::Cancel);
+    connect(buttonBox, SIGNAL(accepted()), this, SLOT(accept()));
+    connect(buttonBox, SIGNAL(rejected()), this, SLOT(reject()));
 }
 
-
+void Dialog::slotCheckBox64()
+{
+    if(checkBox64->isChecked())
+    {
+        comboBox66->setEnabled(false);
+    }else{
+        comboBox66->setEnabled(true);
+    }
+}
