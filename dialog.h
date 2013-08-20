@@ -69,6 +69,7 @@ public:
     Dialog();
 
 private:
+    void initParameter();
     void createMenu();
     void createGridGroupBox1();
     void createGridGroupBox2();
@@ -79,7 +80,17 @@ private:
     void createGridGroupBox7();
     void createButtonBox();
 
-    enum { InputBoxMaxLength = 100, NumButtons = 4 };
+    bool loadObjectParameterFileNames();
+    bool hasSameFileName(QString tmpFileName);
+
+    enum { InputBoxMaxLength = 100,
+           NumButtons = 4,
+           WidgetVerticalSpacing = 2,
+           LayoutContentsMargin = 2,
+           ButtonMaximumHeight = 27
+         };
+
+    QString ObjectParameterFile;
 
     QTextCodec *codec;
     QString tmpString;
@@ -199,13 +210,15 @@ private:
     QLabel *label66;
     QComboBox *comboBox66;
     QLabel *label67;
-    QComboBox *comboBox67;
+    QLineEdit *lineEdit67;
 
     //输出类型选择
     QGroupBox *gridGroupBox7;
     QLabel *label71;
     QLabel *label72;
     QComboBox *comboBox71;  //QComboBox
+
+    QList<QString> fileNameList;
 
 private slots:
     void slotOpenFile21();
@@ -227,6 +240,7 @@ private slots:
     void slotOpenFile314();
 
     void slotCheckBox64();
+    void slotSetValueEdit67();
 };
 //! [0]
 
