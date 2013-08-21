@@ -87,6 +87,7 @@ private:
            NumButtons = 4,
            WidgetVerticalSpacing = 2,
            LayoutContentsMargin = 2,
+           LayoutContentsMarginTop = 6,
            ButtonMaximumHeight = 27
          };
 

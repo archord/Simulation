@@ -79,7 +79,7 @@ void Dialog::createGridGroupBox1()
     gridGroupBox1 = new QGroupBox(tmpString);
     QGridLayout *layout = new QGridLayout;
     layout->setVerticalSpacing(WidgetVerticalSpacing);
-    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin);
+    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMarginTop,LayoutContentsMargin,LayoutContentsMargin);
 
     tmpString = codec->toUnicode("赤经：");
     label11 = new QLabel(tmpString);
@@ -134,7 +134,7 @@ void Dialog::createGridGroupBox2()
     gridGroupBox2 = new QGroupBox(tmpString);
     QGridLayout *layout = new QGridLayout;
     layout->setVerticalSpacing(WidgetVerticalSpacing);
-    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin);
+    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMarginTop,LayoutContentsMargin,LayoutContentsMargin);
 
     //有效孔径
     tmpString = codec->toUnicode("有效孔径（直径）：");
@@ -214,7 +214,7 @@ void Dialog::createGridGroupBox3()
     gridGroupBox3 = new QGroupBox(tmpString);
     QGridLayout *layout = new QGridLayout;
     layout->setVerticalSpacing(WidgetVerticalSpacing);
-    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin);
+    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMarginTop,LayoutContentsMargin,LayoutContentsMargin);
 
     //通道A
     tmpString = codec->toUnicode("通道A");
@@ -381,7 +381,7 @@ void Dialog::createGridGroupBox4()
     gridGroupBox4 = new QGroupBox(tmpString);
     QGridLayout *layout = new QGridLayout;//QHBoxLayout
     layout->setVerticalSpacing(WidgetVerticalSpacing);
-    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin);
+    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMarginTop,LayoutContentsMargin,LayoutContentsMargin);
 
     tmpString = codec->toUnicode("平台稳定度(lsigma)：");
     label41 = new QLabel(tmpString);
@@ -406,7 +406,7 @@ void Dialog::createGridGroupBox5()
     gridGroupBox5 = new QGroupBox(tmpString);
     QGridLayout *layout = new QGridLayout;
     layout->setVerticalSpacing(WidgetVerticalSpacing);
-    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin);
+    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMarginTop,LayoutContentsMargin,LayoutContentsMargin);
 
     tmpString = codec->toUnicode("黄道光");
     checkBox51 = new QCheckBox(tmpString);
@@ -437,7 +437,7 @@ void Dialog::createGridGroupBox6()
     gridGroupBox6 = new QGroupBox(tmpString);
     QGridLayout *layout = new QGridLayout;
     layout->setVerticalSpacing(WidgetVerticalSpacing);
-    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin);
+    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMarginTop,LayoutContentsMargin,LayoutContentsMargin);
 
 
     tmpString = codec->toUnicode("展源目标类型：");
@@ -602,7 +602,7 @@ void Dialog::createGridGroupBox7()
     gridGroupBox7 = new QGroupBox(tmpString);
     QGridLayout *layout = new QGridLayout;
     layout->setVerticalSpacing(WidgetVerticalSpacing);
-    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin,LayoutContentsMargin);
+    layout->setContentsMargins(LayoutContentsMargin,LayoutContentsMarginTop,LayoutContentsMargin,LayoutContentsMargin);
 
     tmpString = codec->toUnicode("输出类型：");
     label71 = new QLabel(tmpString);
