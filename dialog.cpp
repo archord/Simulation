@@ -3,6 +3,7 @@
 #include <QTextCodec>
 #include <iostream>
 
+#include "parmdefine.h"
 #include "dialog.h"
 #include "ui_dialog.h"
 
@@ -47,7 +48,7 @@ Dialog::Dialog()
 
 void Dialog::initParameter()
 {
-    ObjectParameterFile = "pathtempname.txt";
+    ObjectParameterFile = OBJECTPARAMETERFILE;
     fileNameList = QList<QString>();
 }
 
